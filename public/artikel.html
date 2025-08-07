@@ -172,6 +172,7 @@
         cursor: pointer;
       }
 
+      /* Mobile overrides */
       @media (max-width: 480px) {
         #floating-ad {
           font-size: 13px;
@@ -182,6 +183,25 @@
           font-size: 16px;
           top: 3px;
           right: 8px;
+        }
+
+        .chat-container {
+          height: 300px !important;
+          min-height: unset !important;
+        }
+
+        .message-input {
+          padding: 0.5rem;
+        }
+
+        #user-input {
+          min-height: 40px;
+          font-size: 14px;
+        }
+
+        #send-button {
+          padding: 0 0.75rem;
+          font-size: 14px;
         }
       }
     </style>
