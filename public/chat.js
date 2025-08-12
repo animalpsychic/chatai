@@ -1,3 +1,30 @@
+// Tambahkan kode ini di bagian atas file chat.js milikmu
+
+async function loadChatWidget() {
+  try {
+    // Ambil konten HTML dari file terpisah
+    const response = await fetch('chat-widget.html');
+    const htmlContent = await response.text();
+
+    // Buat elemen div sementara untuk menampung konten HTML
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = htmlContent;
+
+    // Tambahkan widget chat ke dalam body halaman
+    document.body.appendChild(tempDiv.firstChild);
+
+    console.log("Chat widget berhasil dimuat!");
+  } catch (error) {
+    console.error("Gagal memuat chat widget:", error);
+  }
+}
+
+// Panggil fungsi ini saat halaman sudah dimuat
+document.addEventListener('DOMContentLoaded', loadChatWidget);
+
+// Setelah ini, baru lanjutkan dengan kode chat.js yang sudah kita buat
+// ...
+
 // --- BAGIAN 1: Kode untuk Menu, Favicon, dan Iklan ---
 (function(){
   // ======= PENGATURAN =======
