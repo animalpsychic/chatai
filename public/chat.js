@@ -283,7 +283,7 @@
       /* Aturan untuk iklan melayang di mobile */
       .floating-ad {
         bottom: 0;
-        left: 0;
+        left: 50%;
         width: 100%;
         text-align: center;
         border-radius: 0;
