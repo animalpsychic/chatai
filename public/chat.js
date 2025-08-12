@@ -54,7 +54,7 @@
     header {
       text-align: center;
       padding: 40px 20px;
-      background-color: #2c3e50;
+      background-color: #fff;
       color: white;
     }
 
