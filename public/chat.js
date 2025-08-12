@@ -94,7 +94,7 @@
     .chat-container {
       display: none;
       position: fixed;
-      bottom: 20px;
+      bottom: 40px;
       right: 20px;
       width: 350px;
       height: 500px;
