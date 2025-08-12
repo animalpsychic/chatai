@@ -4,6 +4,37 @@
  * Handles the chat UI interactions and communication with the backend API.
  */
 
+// ==========================================================
+// Bagian Baru: Logika untuk Buka/Tutup Chat Widget
+// ==========================================================
+
+const openChatBtn = document.getElementById("open-chat-button");
+const closeChatBtn = document.getElementById("close-chat-button");
+const chatWidget = document.getElementById("chat-widget");
+
+// Jika tombol dan widget ada, tambahkan event listener
+if (openChatBtn && closeChatBtn && chatWidget) {
+  // Event listener untuk tombol "Buka Ramalan"
+  openChatBtn.addEventListener("click", () => {
+    // Tambahkan kelas 'active' untuk menampilkan widget chat
+    chatWidget.classList.add("active");
+    // Sembunyikan tombol "Buka Ramalan"
+    openChatBtn.style.display = "none";
+  });
+
+  // Event listener untuk tombol "Tutup"
+  closeChatBtn.addEventListener("click", () => {
+    // Hapus kelas 'active' untuk menyembunyikan widget chat
+    chatWidget.classList.remove("active");
+    // Tampilkan kembali tombol "Buka Ramalan"
+    openChatBtn.style.display = "block";
+  });
+}
+
+// ==========================================================
+// Bagian Lama: Logika Chat App
+// ==========================================================
+
 // DOM elements
 const chatMessages = document.getElementById("chat-messages");
 const userInput = document.getElementById("user-input");
@@ -14,8 +45,7 @@ const typingIndicator = document.getElementById("typing-indicator");
 let chatHistory = [
   {
     role: "assistant",
-    content:
-      "Hello! I'm an LLM chat app powered by Cloudflare Workers AI. How can I help you today?",
+    content: "Ceritain mimpi kamu hari ini, nanti aku kasih tahu angkanya?",
   },
 ];
 let isProcessing = false;
@@ -130,7 +160,7 @@ async function sendMessage() {
     console.error("Error:", error);
     addMessageToChat(
       "assistant",
-      "Sorry, there was an error processing your request.",
+      "Sorry, there was an error processing your request."
     );
   } finally {
     // Hide typing indicator
