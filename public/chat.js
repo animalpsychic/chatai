@@ -62,7 +62,7 @@
     .chat-toggle-container {
       display: flex;
       justify-content: center;
-      padding: 20px;
+      padding: 0px;
     }
 
     /* Main chat button style */
