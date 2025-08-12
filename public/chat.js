@@ -1,41 +1,120 @@
-/**
- * LLM Chat App Frontend
- *
- * Handles the chat UI interactions and communication with the backend API.
- */
+// --- BAGIAN 1: Kode untuk Menu, Favicon, dan Iklan ---
+(function(){
+  // ======= PENGATURAN =======
+  var showAd = true; // true = tampilkan iklan, false = sembunyikan
+  var menuItems = [
+    { text: "Home", link: "#" },
+    { text: "Produk", link: "#" },
+    { text: "Kontak", link: "#" }
+  ];
+  var faviconPath = 'https://raw.githubusercontent.com/animalpsychic/chatai/refs/heads/main/public/favicon.png';
+  var faviconType = 'image/png';
+  // ==========================
 
-// ==========================================================
-// Bagian Baru: Logika untuk Buka/Tutup Chat Widget
-// ==========================================================
+  // Pasang favicon
+  var link = document.createElement('link');
+  link.rel = 'icon';
+  link.type = faviconType;
+  link.href = faviconPath;
+  document.head.appendChild(link);
 
+  // CSS untuk menu dan iklan
+  var css = `
+    /* Header Menu */
+    .top-menu {
+      background: #222;
+      color: #fff;
+      display: flex;
+      gap: 20px;
+      padding: 10px 20px;
+    }
+    .top-menu a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .top-menu a:hover {
+      text-decoration: underline;
+    }
+
+    /* Floating Ad */
+    .floating-ad {
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: calc(100% - 40px);
+      background: #ffcc00;
+      color: #000;
+      text-align: center;
+      font-weight: bold;
+      padding: 10px 40px 10px 10px;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.15);
+      z-index: 9999;
+    }
+    .floating-ad a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .close-btn {
+      position: absolute !important;
+      top: 50% !important;
+      right: 10px !important;
+      transform: translateY(-50%) !important;
+      background: #000 !important;
+      color: #fff !important;
+      border: none !important;
+      border-radius: 50% !important;
+      width: 22px !important;
+      height: 22px !important;
+      font-size: 16px !important;
+      line-height: 20px !important;
+      text-align: center !important;
+      cursor: pointer !important;
+      z-index: 2147483647 !important;
+      display: inline-block !important;
+    }
+  `;
+
+  var style = document.createElement('style');
+  style.innerHTML = css;
+  document.head.appendChild(style);
+
+  // Menu Header
+  var menu = document.createElement('div');
+  menu.className = 'top-menu';
+  menu.innerHTML = menuItems.map(item => `<a href="${item.link}">${item.text}</a>`).join('');
+  document.body.insertBefore(menu, document.body.firstChild);
+
+  // Floating Ad
+  if(showAd){
+    var ad = document.createElement('div');
+    ad.className = 'floating-ad';
+
+    var btn = document.createElement('button');
+    btn.className = 'close-btn';
+    btn.innerHTML = '&times;';
+    btn.addEventListener('click', function(){
+      ad.remove();
+    });
+
+    var link = document.createElement('a');
+    link.href = '#';
+    link.target = '_blank';
+    link.textContent = '🔥 Promo Spesial! Diskon 50%';
+
+    ad.appendChild(btn);
+    ad.appendChild(link);
+    document.body.appendChild(ad);
+  }
+})();
+
+// --- BAGIAN 2: Kode untuk Chat App ---
+
+// DOM elements
 const openChatBtn = document.getElementById("open-chat-button");
 const closeChatBtn = document.getElementById("close-chat-button");
 const chatWidget = document.getElementById("chat-widget");
-
-// Jika tombol dan widget ada, tambahkan event listener
-if (openChatBtn && closeChatBtn && chatWidget) {
-  // Event listener untuk tombol "Buka Ramalan"
-  openChatBtn.addEventListener("click", () => {
-    // Tambahkan kelas 'active' untuk menampilkan widget chat
-    chatWidget.classList.add("active");
-    // Sembunyikan tombol "Buka Ramalan"
-    openChatBtn.style.display = "none";
-  });
-
-  // Event listener untuk tombol "Tutup"
-  closeChatBtn.addEventListener("click", () => {
-    // Hapus kelas 'active' untuk menyembunyikan widget chat
-    chatWidget.classList.remove("active");
-    // Tampilkan kembali tombol "Buka Ramalan"
-    openChatBtn.style.display = "block";
-  });
-}
-
-// ==========================================================
-// Bagian Lama: Logika Chat App
-// ==========================================================
-
-// DOM elements
 const chatMessages = document.getElementById("chat-messages");
 const userInput = document.getElementById("user-input");
 const sendButton = document.getElementById("send-button");
@@ -49,6 +128,19 @@ let chatHistory = [
   },
 ];
 let isProcessing = false;
+
+// Logika untuk Buka/Tutup Chat Widget
+if (openChatBtn && closeChatBtn && chatWidget) {
+  openChatBtn.addEventListener("click", () => {
+    chatWidget.classList.add("active");
+    openChatBtn.style.display = "none";
+  });
+
+  closeChatBtn.addEventListener("click", () => {
+    chatWidget.classList.remove("active");
+    openChatBtn.style.display = "block";
+  });
+}
 
 // Auto-resize textarea as user types
 userInput.addEventListener("input", function () {
