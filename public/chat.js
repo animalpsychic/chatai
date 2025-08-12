@@ -270,7 +270,7 @@
         bottom: 60px;
         right: 0;
         width: 100%;
-        height: calc(100% - 60px);
+        height: calc(60% - 60px);
         border-radius: 0;
         box-shadow: none;
         transition: none;
