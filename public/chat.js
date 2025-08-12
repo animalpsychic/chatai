@@ -227,20 +227,20 @@
     }
 
     /* Floating Ad */
-.floating-ad {
-  position: fixed;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
-  width: calc(100% - 40px);
-  background: #ffcc00;
-  color: #000;
-  text-align: center;
-  font-weight: bold;
-  padding: 10px 10px; /* Perbaikan ada di sini: Padding atas/bawah 10px, kiri/kanan 10px */
-  box-shadow: 0 -2px 8px rgba(0,0,0,0.15);
-  z-index: 9999;
-}
+    .floating-ad {
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: calc(100% - 40px);
+      background: #ffcc00;
+      color: #000;
+      text-align: center;
+      font-weight: bold;
+      padding: 10px 10px;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.15);
+      z-index: 9999;
+    }
     .floating-ad a {
       color: inherit;
       text-decoration: none;
@@ -263,23 +263,21 @@
       z-index: 2147483647 !important;
       display: inline-block !important;
     }
-    
+
     /* --- Media Query untuk perangkat mobile --- */
     @media (max-width: 600px) {
       .chat-container {
-        /* Atur chat widget agar menempati sisa ruang di atas iklan */
-        bottom: 60px; /* Jarak dari bawah, sesuaikan dengan tinggi iklan */
+        bottom: 60px;
         right: 0;
         width: 100%;
-        height: calc(100% - 60px); /* Kurangi tinggi iklan dari tinggi total */
+        height: calc(100% - 60px);
         border-radius: 0;
         box-shadow: none;
         transition: none;
       }
     
-      /* Beri ruang di body agar konten utama tidak terpotong iklan */
       body {
-        padding-bottom: 60px; /* Sesuaikan dengan tinggi iklan */
+        padding-bottom: 60px;
       }
     
       /* Aturan untuk iklan melayang di mobile */
@@ -289,7 +287,8 @@
         width: 100%;
         text-align: center;
         border-radius: 0;
-        padding: 10px; /* Contoh padding, sesuaikan */
+        padding: 10px;
+        box-sizing: border-box; /* Ditambahkan */
       }
     }
   `;
