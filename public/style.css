@@ -1,9 +1,13 @@
-/* General body styling */
+/* Aturan global */
+html, body {
+  height: 100%; /* Kunci untuk tampilan layar penuh */
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: sans-serif;
   line-height: 1.6;
-  margin: 0;
-  padding: 0;
   background-color: #f4f4f4;
 }
 
@@ -49,7 +53,7 @@ header {
 
 /* Main chat widget container - Hidden by default */
 .chat-container {
-  display: none; /* Kunci untuk menyembunyikan */
+  display: none;
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -65,7 +69,7 @@ header {
 
 /* Class to show the chat widget */
 .chat-container.active {
-  display: flex; /* Kunci untuk menampilkan */
+  display: flex;
 }
 
 /* Chat header */
@@ -209,26 +213,8 @@ footer {
   margin-left: 10px;
 }
 
-/* Aturan dasar untuk chat container yang sudah ada */
-.chat-container {
-  display: none;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 350px;
-  height: 500px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  flex-direction: column;
-  overflow: hidden;
-  transition: all 0.3s ease; /* Tambahkan transisi untuk animasi yang mulus */
-}
-
 /* --- Media Query untuk perangkat mobile --- */
 @media (max-width: 600px) {
-  /* Aturan ini hanya akan berlaku di layar dengan lebar maksimal 600px */
   .chat-container {
     bottom: 0;
     right: 0;
@@ -236,15 +222,13 @@ footer {
     height: 100%;
     border-radius: 0;
     box-shadow: none;
-    transition: none; /* Nonaktifkan transisi agar muncul lebih cepat di mobile */
+    transition: none;
   }
 
-  /* Atur padding di bagian bawah agar tidak menutupi iklan melayang */
   .chat-messages {
-    padding-bottom: 70px; /* Sesuaikan angka ini sesuai tinggi iklan melayang */
+    padding-bottom: 70px;
   }
 
-  /* Iklan melayang, kita bisa atur posisinya */
   .floating-ad {
     bottom: 0;
     left: 0;
