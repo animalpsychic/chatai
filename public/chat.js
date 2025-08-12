@@ -231,7 +231,7 @@
       position: fixed;
       left: 50%;
       bottom: 0;
-      transform: translateX(-50%);
+      transform: translateX(50%);
       width: calc(100% - 40px);
       background: #ffcc00;
       color: #000;
